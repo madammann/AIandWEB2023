@@ -1,0 +1,84 @@
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("{{background_path}}") no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .search {
+            margin-top: 5%;
+            position: relative;
+        }
+        .search input[type="text"] {
+            width: 60%;
+            height: 40px;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            outline: none;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.6);
+            background: rgba(255,0,0,0.7);
+            color: white;
+        }
+        .search button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            position: absolute;
+            right: 240;
+            top: 0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.6);
+            background: rgba(255,0,0,0.7);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .results {
+            margin-top: 2%;
+            text-align: left;
+            border: 2px solid black;
+            background-color: rgba(255, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .results h3 {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .results p {
+            font-size: 18px;
+            color: white;
+            margin: 10px 0;
+        }
+        .results a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search">
+            <form action="search" method="get">
+                <input type="text" name="q" value="{{q}}" placeholder="Search...">
+                <button type="submit">🔍</button>
+            </form>
+        </div>
+        <div class="results">
+            {% for u, t, x in zip (urls, titles, texts) %}
+                <h3><a href="{{u}}">{{t}}</a></h3>
+                <p>{{x}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
